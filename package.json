@@ -1,0 +1,35 @@
+{
+  "name": "taskflow",
+  "version": "1.0.0",
+  "description": "Crie uma API para gerenciar tarefas com funcionalidades como criação, atualização, exclusão e listagem",
+  "main": "index.js",
+  "type": "module",
+  "license": "AGPL-version-3.0",
+  "private": false,
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 6.0.0"
+  },
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": "",
+  "keywords": [],
+  "author": {
+    "name": "",
+    "email": "",
+    "url": ""
+  },
+  "contributors": [],
+  "scripts": {
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js",
+    "test": ""
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "sequelize": "^6.37.5"
+  }
+}
