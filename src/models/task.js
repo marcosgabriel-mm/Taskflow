@@ -25,6 +25,10 @@ export default class Task extends Model {
             dueDate: { // Data de vencimento/termino
                 type: DataTypes.DATE,
                 allowNull: false
+            },
+            user_id: {
+                type: DataTypes.INTEGER,
+                allowNull: false
             }
         }, {
                 sequelize,
@@ -32,5 +36,9 @@ export default class Task extends Model {
                 tableName: 'tasks',
             }
         );
+    }
+
+    static associate(models) {
+        this.belongsTo(models.User, { foreignKey: "user_id", as: "user" });
     }
 }

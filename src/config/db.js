@@ -1,6 +1,7 @@
 import { Sequelize } from "sequelize";
 import Task from "../models/task.js";
 import dotenv from "dotenv";
+import User from "../models/user.js";
 
 dotenv.config();
 class Database {
@@ -26,6 +27,11 @@ class Database {
         }
 
         Task.init(this.#sequelize);
+        User.init(this.#sequelize);
+
+        Task.associate(this.#sequelize.models);
+        User.associate(this.#sequelize.models);
+
         await this.#sequelize.sync({force: false});
 
     }

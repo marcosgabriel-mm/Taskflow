@@ -24,10 +24,10 @@ export default class TaskService {
 
     }
 
-    static async getAllTasks() {
+    static async getAllTasks(idUser) {
 
         try {
-            const tasks = await TaskRepository.findAll();
+            const tasks = await TaskRepository.findAll(idUser);
             if (tasks.length === 0) {
                 throw new HttpError("Nenhuma tarefa encontrada!", 404);
             }
@@ -40,10 +40,10 @@ export default class TaskService {
 
     }
 
-    static async getOneTask(id) {
+    static async getOneTaskFromUser(id, idUser) {
         try {
             
-            const task = await TaskRepository.FindById(id);
+            const task = await TaskRepository.FindById(id, idUser);
             if (!task) {
                 throw new HttpError("Não foi possivel encontrar a tarefa", 404);
             }
@@ -55,12 +55,12 @@ export default class TaskService {
         }
     }
 
-    static async deleteOneTask(id) {
+    static async deleteOneTask(id, idUser) {
 
         const transaction = await Database.iniciliazeTransaction();
 
         try {
-            const task = await TaskRepository.destroy(id, transaction);
+            const task = await TaskRepository.destroy(id, idUser, transaction);
             if (task === 0) {
                 throw new HttpError("Não foi possivel deletar a tarefa", 404);
             }
@@ -75,18 +75,18 @@ export default class TaskService {
 
     }
 
-    static async updateOneTask(id, data) {
+    static async updateOneTask(id, idUser, data) {
 
         const transaction = await Database.iniciliazeTransaction();
 
         try {  
-            const task = await TaskRepository.update(id, data, transaction);
+            const task = await TaskRepository.update(id, idUser, data, transaction);
             if (task[0] === 0) {
                 throw new HttpError("Não foi possivel atualizar a tarefa", 404);
             }
 
             await transaction.commit();
-            return TaskRepository.FindById(id);
+            return TaskRepository.FindById(id, idUser);
 
         } catch (error) {
             await transaction.rollback();
