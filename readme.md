@@ -141,8 +141,8 @@ Esta é uma API RESTful para gerenciar lembretes, com suporte à autenticação 
 
 1. Clone o repositório:
    ```bash
-   git clone <url-do-repositorio>
-   cd <nome-do-diretorio>
+   git clone [<url-do-repositorio>](https://github.com/marcosgabriel-mm/Taskflow.git)
+   cd Taskflow/
    ```
 
 2. Instale as dependências:
